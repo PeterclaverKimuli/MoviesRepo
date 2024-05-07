@@ -1,0 +1,27 @@
+﻿@model InterviewAppMVC.ViewModels.MovieListViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movie Details</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
+                    <p class="card-text">Genre: @Html.DisplayFor(model => model.Genre.Name)</p>
+                    <p class="card-text">Release Date: @Model.ReleaseDate.ToString("D")</p>
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

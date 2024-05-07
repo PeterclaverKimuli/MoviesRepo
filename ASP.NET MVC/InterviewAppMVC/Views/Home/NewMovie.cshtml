@@ -1,0 +1,45 @@
+﻿@model InterviewAppMVC.ViewModels.MovieFormViewModel
+
+@{
+    ViewData["Title"] = "NewMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Create Movie</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewMovie">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="GenreId" class="form-label"></label>
+                <select asp-for="GenreId" asp-items="@(new SelectList(Model.Genres, "Id", "Name"))" class="form-select">
+                    <option value="">Select Genre</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NumberInStock" class="form-label"></label>
+                <input asp-for="NumberInStock" class="form-control" />
+                <span asp-validation-for="NumberInStock" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ReleaseDate" class="form-label"></label>
+                <input asp-for="ReleaseDate" type="date" class="form-control"/>
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<InterviewAppMVC.ViewModels.MovieListViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Movies</h2>
+
+@Html.ActionLink("New Movie", "New", "Home", null, new { @class = "btn btn-primary mb-3" })
+
+@if (Model == null)
+{
+    <p style="font-style='italic'">There are currently no movies available.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped-columns">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Release Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@movie.Name, "Details", "Home", new{id = movie.Id}, null)</td>
+                    <td>@movie.Genre.Name</td>
+                    <td>@movie.ReleaseDate.ToShortDateString()</td>
+                    <td>
+                        <button class="btn btn-link" onclick="deleteMovie(this, @movie.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script src="~/js/moviejs/movie.js"></script>
+
